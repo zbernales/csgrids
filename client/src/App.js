@@ -70,7 +70,7 @@ function App() {
         <div className="grid-container">
           <div />
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTMEq76bpggxzaf1aukuPDGlb7EJv0vi6v0Q&s" alt="Team Liquid" className="logo"></img>
-            <img src="https://cdn.escharts.com/uploads/public/608/7e9/9f8/6087e99f88f73113046300.png" alt="Faze Clan" className="logo"></img>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Faze_Clan.svg" alt="Faze Clan" className="logo"></img>
             <div className="stat">1.4+ HLTV rating in S-tier tournament</div>
             <img src="https://upload.wikimedia.org/wikipedia/en/a/ab/Luminosity_Gaming_logo.svg" alt="Luminosity Gaming" className="logo"></img>
             <div className="square" onClick={() => handleComponentClick(0, 0)}></div>
