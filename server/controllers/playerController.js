@@ -1,24 +1,23 @@
 const { HLTV } = require('hltv')
 const handlePlayerPost = (req, res) => {
-    const { rowIndex, colIndex, playerName } = req.body;
-    console.log(`Row index: ${rowIndex}, Column index: ${colIndex}, Player selected: ${playerName}`);
-    HLTV.getPlayerByName({ name: playerName}).then(async (player) => {
-
-        let array1 = ['Team', 'FaZe'];
-        let array2 = ['Team', 'Luminosity'];
-        let array3 = ['Country', 'Brazil'];
-        let array4 = ['Continent', 'Europe'];
-        const condition1 = await checkCondition(array1, player);
-        const condition2 = await checkCondition(array2, player);
-        const condition3 = await checkCondition(array3, player);
-        const condition4 = await checkCondition(array4, player);
-        if (condition4) {
-          console.log('Valid');
-        } else {
-          console.log('Invalid');
-        }
-      });
-    res.status(200).json({ message: 'Player data received successfully', data: { rowIndex, colIndex, playerName} }); // inputting steel results in crash
+  const { rowIndex, colIndex, playerName } = req.body;
+  console.log(`Row index: ${rowIndex}, Column index: ${colIndex}, Player selected: ${playerName}`);
+  HLTV.getPlayerByName({ name: playerName}).then(async (player) => {
+      let array1 = ['Team', 'FaZe'];
+      let array2 = ['Team', 'Luminosity'];
+      let array3 = ['Country', 'Brazil'];
+      let array4 = ['Continent', 'Europe'];
+      const condition1 = await checkCondition(array1, player);
+      const condition2 = await checkCondition(array2, player);
+      const condition3 = await checkCondition(array3, player);
+      const condition4 = await checkCondition(array4, player);
+      if (condition4) {
+        console.log('Valid');
+      } else {
+        console.log('Invalid');
+      }
+    });
+  res.status(200).json({ message: 'Player data received successfully', data: { rowIndex, colIndex, playerName} }); // inputting steel results in crash
 };
 
 async function checkCondition(statistic, player) {
@@ -87,13 +86,50 @@ async function checkCondition(statistic, player) {
       return continents[continent].has(player.country.name);
     }
     case 'Rating': {
-      return false;
+      let rating = statistic[1];
+      if (statistic[2] > 0) {
+        return player.statistics.rating >= rating;
+      } else {
+        return player.statistics.rating <= rating;
+      }
     }
     case 'RatingByEventType': {
       return false;
     }
     case 'RatingByEventPrizepool': {
       return false;
+    }
+    case 'KillsPerRound': {
+      let kpr = statistic[1];
+      if (statistic[2] > 0) {
+        return player.statistics.killsPerRound >= kpr;
+      } else {
+        return player.statistics.killsPerRound <= kpr;
+      }
+    }
+    case 'DeathsPerRound': {
+      let dpr = statistic[1];
+      if (statistic[2] > 0) {
+        return player.statistics.deathsPerRound >= dpr;
+      } else {
+        return player.statistics.deathsPerRound <= dpr;
+      }
+    }
+    case 'MapsPlayed': {
+      let mapsPlayed = statistic[1];
+      if (statistic[2] > 0) {
+        return player.statistics.mapsPlayed >= mapsPlayed;
+      } else {
+        return player.statistics.mapsPlayed <= mapsPlayed;
+      }
+    }
+    case 'Headshots': {
+      let headshots = statistic[1];
+      if (statistic[2]> 0) {
+        return player.statistics.headshots >= headshots;
+      } else {
+        return player.statistics.headshots <= headshots;
+      }
     }
     default:
       console.error(`Unknown statistic type: ${type}`);
