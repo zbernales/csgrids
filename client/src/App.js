@@ -7,6 +7,7 @@ import { useRef } from 'react';
 import SearchBar from "./components/SearchBar"
 
 function App() {
+  const [selectedPlayers, setSelectedPlayers] = useState({});
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   //const [clickedGridIndex, setClickedGridIndex] = useState(null);
   const [row, setRow] = useState(null);
@@ -30,7 +31,7 @@ function App() {
   };
 
   const handlePlayerSelect = (selectedPlayer) => {
-    if (row !== null && column != null) {
+    if (row !== null && column != null && !Object.values(selectedPlayers).some(player => player?.name === selectedPlayer)) {
       // Make a request to your backend
       axios.post('http://localhost:3001/api/player', {
         rowIndex: row,
@@ -39,6 +40,14 @@ function App() {
         playerName: selectedPlayer   // Send selected player name
       }).then(response => {
         console.log('Player data sent successfully:', response.data);
+        const playerData = response.data.data;
+        setSelectedPlayers(prev => ({
+          ...prev,
+          [`${row}-${column}`]: {
+            name: playerData.playerName,
+            image: playerData.image
+          }
+        }))
       }).catch(error => {
         console.error('Error sending player data:', error);
       });
@@ -73,17 +82,116 @@ function App() {
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Faze_Clan.svg" alt="Faze Clan" className="logo"></img>
             <div className="stat">1.4+ HLTV rating in S-tier tournament</div>
             <img src="https://upload.wikimedia.org/wikipedia/en/a/ab/Luminosity_Gaming_logo.svg" alt="Luminosity Gaming" className="logo"></img>
-            <div className="square" onClick={() => handleComponentClick(0, 0)}></div>
-            <div className="square" onClick={() => handleComponentClick(0, 1)}></div>
-            <div className="square" onClick={() => handleComponentClick(0, 2)}></div>
+            <div className="square" onClick={() => handleComponentClick(0, 0)}>
+              {selectedPlayers["0-0"] && (
+                <>
+                  <img 
+                    src={selectedPlayers["0-0"].image} 
+                    alt="https://www.seekpng.com/ipng/u2e6w7t4r5i1i1e6_default-portrait-image-generic-profile/" 
+                    className="player-pic"
+                  />
+                  <div className="nametag">{selectedPlayers["0-0"].name}</div>
+                </>
+               )}
+            </div>
+            <div className="square" onClick={() => handleComponentClick(0, 1)}>
+              {selectedPlayers["0-1"] && (
+                <>
+                  <img 
+                    src={selectedPlayers["0-1"].image} 
+                    alt={selectedPlayers["0-1"].name} 
+                    className="player-pic"
+                  />
+                  <div className="nametag">{selectedPlayers["0-1"].name}</div>
+                </>
+              )}
+            </div>
+            <div className="square" onClick={() => handleComponentClick(0, 2)}>
+              {selectedPlayers["0-2"] && (
+                <>
+                  <img 
+                    src={selectedPlayers["0-2"].image} 
+                    alt={selectedPlayers["0-2"].name} 
+                    className="player-pic"
+                  />
+                  <div className="nametag">{selectedPlayers["0-2"].name}</div>
+                </>
+              )}
+            </div>
             <div className="stat">HLTV top 20</div>
-            <div className="square" onClick={() => handleComponentClick(1, 0)}></div>
-            <div className="square" onClick={() => handleComponentClick(1, 1)}></div>
-            <div className="square" onClick={() => handleComponentClick(1, 2)}></div>
+            <div className="square" onClick={() => handleComponentClick(1, 0)}>
+              {selectedPlayers["1-0"] && (
+                <>
+                  <img 
+                    src={selectedPlayers["1-0"].image} 
+                    alt={selectedPlayers["1-0"].name} 
+                    className="player-pic"
+                  />
+                  <div className="nametag">{selectedPlayers["1-0"].name}</div>
+                </>
+              )}
+            </div>
+            <div className="square" onClick={() => handleComponentClick(1, 1)}>
+              {selectedPlayers["1-1"] && (
+                <>
+                  <img 
+                    src={selectedPlayers["1-1"].image} 
+                    alt={selectedPlayers["1-1"].name} 
+                    className="player-pic"
+                  />
+                  <div className="nametag">{selectedPlayers["1-1"].name}</div>
+                </>
+              )}
+            </div>
+            <div className="square" onClick={() => handleComponentClick(1, 2)}>
+              {selectedPlayers["1-2"] && (
+                <>
+                  <img 
+                    src={selectedPlayers["1-2"].image} 
+                    alt={selectedPlayers["1-2"].name} 
+                    className="player-pic"
+                  />
+                  <div className="nametag">{selectedPlayers["1-2"].name}</div>
+                </>
+              )}
+            </div>
             <div className="stat">European</div>
-            <div className="square" onClick={() => handleComponentClick(2, 0)}></div>
-            <div className="square" onClick={() => handleComponentClick(2, 1)}></div>
-            <div className="square" onClick={() => handleComponentClick(2, 2)}></div>
+            <div className="square" onClick={() => handleComponentClick(2, 0)}>
+              {selectedPlayers["2-0"] && (
+                <>
+                  <img 
+                    src={selectedPlayers["2-0"].image} 
+                    alt={selectedPlayers["2-0"].name} 
+                    className="player-pic"
+                  />
+                  <div className="nametag">{selectedPlayers["2-0"].name}</div>
+                </>
+              )}
+            </div>
+            <div className="square" onClick={() => handleComponentClick(2, 1)}>
+              {selectedPlayers["2-1"] && (
+                <>
+                  <img 
+                    src={selectedPlayers["2-1"].image} 
+                    alt={selectedPlayers["2-1"].name} 
+                    className="player-pic"
+                  />
+                  <div className="nametag">{selectedPlayers["2-1"].name}</div>
+                </>
+              )}
+            </div>
+            <div className="square" onClick={() => handleComponentClick(2, 2)}>
+              {selectedPlayers["2-2"] && (
+                <>
+                  <img 
+                    src={selectedPlayers["2-2"].image} 
+                    alt={selectedPlayers["2-2"].name} 
+                    className="player-pic"
+                  />
+                  <div className="nametag">{selectedPlayers["2-2"].name}</div>
+                </>
+              )}
+            </div>
         </div>
       </div>
 

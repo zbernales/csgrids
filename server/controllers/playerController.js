@@ -3,21 +3,33 @@ const handlePlayerPost = (req, res) => {
   const { rowIndex, colIndex, playerName } = req.body;
   console.log(`Row index: ${rowIndex}, Column index: ${colIndex}, Player selected: ${playerName}`);
   HLTV.getPlayerByName({ name: playerName}).then(async (player) => {
-      let array1 = ['Team', 'FaZe'];
-      let array2 = ['Team', 'Luminosity'];
-      let array3 = ['Country', 'Brazil'];
-      let array4 = ['Continent', 'Europe'];
-      const condition1 = await checkCondition(array1, player);
-      const condition2 = await checkCondition(array2, player);
-      const condition3 = await checkCondition(array3, player);
-      const condition4 = await checkCondition(array4, player);
-      if (condition4) {
-        console.log('Valid');
-      } else {
-        console.log('Invalid');
-      }
-    });
-  res.status(200).json({ message: 'Player data received successfully', data: { rowIndex, colIndex, playerName} }); // inputting steel results in crash
+    let array1 = ['Team', 'FaZe'];
+    let array2 = ['Team', 'Luminosity'];
+    let array3 = ['Country', 'Brazil'];
+    let array4 = ['Continent', 'Europe'];
+    const condition1 = await checkCondition(array1, player);
+    const condition2 = await checkCondition(array2, player);
+    const condition3 = await checkCondition(array3, player);
+    const condition4 = await checkCondition(array4, player);
+    if (condition4 && condition1) {
+      console.log('Valid');
+      res.status(200).json({ 
+        message: 'Player data received successfully', 
+        data: { 
+          rowIndex, 
+          colIndex, 
+          playerName: player.ign,
+          image: player.image
+        } 
+      }); // inputting steel, disco doplan results in crash
+    } else {
+      console.log('Invalid');
+    }
+  })
+  .catch((error) => {
+    console.error("Error fetching player:", error);
+    res.status(500).json({ error: "Failed to fetch player data" });
+  })
 };
 
 async function checkCondition(statistic, player) {
