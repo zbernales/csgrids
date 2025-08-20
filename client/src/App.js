@@ -5,12 +5,14 @@ import {useState} from 'react';
 import { useRef } from 'react';
 //import logo from './Counter-Strike_2_29.webp'
 import SearchBar from "./components/SearchBar"
+import CustomAlert from "./components/CustomAlert";
 
 function App() {
   const [selectedPlayers, setSelectedPlayers] = useState({});
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [row, setRow] = useState(null);
   const [column, setCol] = useState(null);
+  const [alertVisible, setAlertVisible] = useState(false);
   const searchRef = useRef(null);
   const handleComponentClick = (row, column) => {
     setRow(row);
@@ -45,7 +47,7 @@ function App() {
         };
         setSelectedPlayers(newSelectedPlayers);
         if (Object.keys(newSelectedPlayers).length == 9) {
-          alert('Grid Completed');
+          setAlertVisible(true);
         }
       }).catch(error => {
         console.error('Error sending player data:', error);
@@ -76,6 +78,13 @@ function App() {
           </div>
         )} 
         <div className="grid-container">
+          {alertVisible && (
+            <CustomAlert
+              visible={alertVisible}
+              onClose={() => setAlertVisible(false)}
+              message="Grid Completed!"
+            />
+          )}
           <div />
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTMEq76bpggxzaf1aukuPDGlb7EJv0vi6v0Q&s" alt="Team Liquid" className="logo"></img>
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Faze_Clan.svg" alt="Faze Clan" className="logo"></img>
