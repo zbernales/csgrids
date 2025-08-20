@@ -9,12 +9,10 @@ import SearchBar from "./components/SearchBar"
 function App() {
   const [selectedPlayers, setSelectedPlayers] = useState({});
   const [isSearchVisible, setIsSearchVisible] = useState(false);
-  //const [clickedGridIndex, setClickedGridIndex] = useState(null);
   const [row, setRow] = useState(null);
   const [column, setCol] = useState(null);
   const searchRef = useRef(null);
   const handleComponentClick = (row, column) => {
-    //setClickedGridIndex(index);
     setRow(row);
     setCol(column);
     setIsSearchVisible(true);
@@ -24,7 +22,6 @@ function App() {
   const handleClickOutside = (event) => {
     if (searchRef.current && !searchRef.current.contains(event.target)) {
       setIsSearchVisible(false);
-      //setClickedGridIndex(null);
       setRow(null);
       setCol(null);
     }
@@ -32,22 +29,24 @@ function App() {
 
   const handlePlayerSelect = (selectedPlayer) => {
     if (row !== null && column != null && !Object.values(selectedPlayers).some(player => player?.name === selectedPlayer)) {
-      // Make a request to your backend
       axios.post('http://localhost:3001/api/player', {
         rowIndex: row,
         colIndex: column,
-       // gridIndex: clickedGridIndex, // Send which grid was clicked
-        playerName: selectedPlayer   // Send selected player name
+        playerName: selectedPlayer  
       }).then(response => {
         console.log('Player data sent successfully:', response.data);
         const playerData = response.data.data;
-        setSelectedPlayers(prev => ({
-          ...prev,
+        const newSelectedPlayers = {
+          ...selectedPlayers,
           [`${row}-${column}`]: {
             name: playerData.playerName,
             image: playerData.image
           }
-        }))
+        };
+        setSelectedPlayers(newSelectedPlayers);
+        if (Object.keys(newSelectedPlayers).length == 9) {
+          alert('Grid Completed');
+        }
       }).catch(error => {
         console.error('Error sending player data:', error);
       });
@@ -80,7 +79,7 @@ function App() {
           <div />
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTMEq76bpggxzaf1aukuPDGlb7EJv0vi6v0Q&s" alt="Team Liquid" className="logo"></img>
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Faze_Clan.svg" alt="Faze Clan" className="logo"></img>
-            <div className="stat">1.4+ HLTV rating in S-tier tournament</div>
+            <div className="stat">1.0+ HLTV rating</div>
             <img src="https://upload.wikimedia.org/wikipedia/en/a/ab/Luminosity_Gaming_logo.svg" alt="Luminosity Gaming" className="logo"></img>
             <div className="square" onClick={() => handleComponentClick(0, 0)}>
               {selectedPlayers["0-0"] && (
@@ -118,7 +117,7 @@ function App() {
                 </>
               )}
             </div>
-            <div className="stat">HLTV top 20</div>
+            <div className="stat">Major Winner</div>
             <div className="square" onClick={() => handleComponentClick(1, 0)}>
               {selectedPlayers["1-0"] && (
                 <>

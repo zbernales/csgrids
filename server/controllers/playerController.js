@@ -1,17 +1,20 @@
-const { HLTV } = require('hltv')
+const { HLTV } = require('hltv');
 const handlePlayerPost = (req, res) => {
   const { rowIndex, colIndex, playerName } = req.body;
+  let rows = [['Team', 'Luminosity'],['Major', 1, 1],['Continent','Europe']];
+  let cols = [['Team', 'Liquid'],['Team', 'FaZe'],['Rating', 1, 1]];
   console.log(`Row index: ${rowIndex}, Column index: ${colIndex}, Player selected: ${playerName}`);
   HLTV.getPlayerByName({ name: playerName}).then(async (player) => {
-    let array1 = ['Team', 'FaZe'];
-    let array2 = ['Team', 'Luminosity'];
-    let array3 = ['Country', 'Brazil'];
-    let array4 = ['Continent', 'Europe'];
-    const condition1 = await checkCondition(array1, player);
-    const condition2 = await checkCondition(array2, player);
-    const condition3 = await checkCondition(array3, player);
-    const condition4 = await checkCondition(array4, player);
-    if (condition4 && condition1) {
+    if (!player || !player.id) {
+      throw new Error(`Player not found: ${playerName}`)
+    }
+    /*const stats = await HLTV.getPlayerStats({ id: player.id });
+    const condition1 = await checkCondition(rows[rowIndex], player, stats);
+    const condition2 = await checkCondition(cols[colIndex], player, stats);*/
+    const condition1 = await checkCondition(rows[rowIndex], player);
+    const condition2 = await checkCondition(cols[colIndex], player);
+    console.log(player.statistics);
+    if (condition1 && condition2) {
       console.log('Valid');
       res.status(200).json({ 
         message: 'Player data received successfully', 
@@ -21,7 +24,7 @@ const handlePlayerPost = (req, res) => {
           playerName: player.ign,
           image: player.image
         } 
-      }); // inputting steel, disco doplan results in crash
+      }); // inputting steel, disco doplan, Guardian, kioshima results in crash
     } else {
       console.log('Invalid');
     }
@@ -32,7 +35,7 @@ const handlePlayerPost = (req, res) => {
   })
 };
 
-async function checkCondition(statistic, player) {
+async function checkCondition(statistic, player, stats) {
   let type = statistic[0];
   switch (type) {
     case 'Team': {
@@ -100,9 +103,19 @@ async function checkCondition(statistic, player) {
     case 'Rating': {
       let rating = statistic[1];
       if (statistic[2] > 0) {
-        return player.statistics.rating >= rating;
+        return player.statistics?.rating >= rating;
       } else {
-        return player.statistics.rating <= rating;
+        return player.statistics?.rating <= rating;
+      }
+    }
+    case 'Major': {
+      let majors = statistic[1];
+      if (statistic[2] > 0) {
+        return player.achievements.filter(item => item.event.name.includes('Major') && item.place === '1st').length >= majors;
+      } else if (statistic[2] < 0) {
+        return player.achievements.filter(item => item.event.name.includes('Major') && item.place === '1st').length <= majors;
+      } else {
+        return player.achievements.filter(item => item.event.name.includes('Major') && item.place === '1st').length == majors;
       }
     }
     case 'RatingByEventType': {
@@ -111,38 +124,118 @@ async function checkCondition(statistic, player) {
     case 'RatingByEventPrizepool': {
       return false;
     }
-    case 'KillsPerRound': {
+    /*case 'KillsPerRound': {
       let kpr = statistic[1];
       if (statistic[2] > 0) {
-        return player.statistics.killsPerRound >= kpr;
+        return stats.overviewStatistics.killsPerRound >= kpr;
       } else {
-        return player.statistics.killsPerRound <= kpr;
+        return stats.overviewStatistics.killsPerRound <= kpr;
       }
     }
     case 'DeathsPerRound': {
       let dpr = statistic[1];
       if (statistic[2] > 0) {
-        return player.statistics.deathsPerRound >= dpr;
+        return stats.overviewStatistics.deathsPerRound >= dpr;
       } else {
-        return player.statistics.deathsPerRound <= dpr;
+        return stats.overviewStatistics.deathsPerRound <= dpr;
       }
     }
     case 'MapsPlayed': {
       let mapsPlayed = statistic[1];
       if (statistic[2] > 0) {
-        return player.statistics.mapsPlayed >= mapsPlayed;
+        return stats.overviewStatistics.mapsPlayed >= mapsPlayed;
       } else {
-        return player.statistics.mapsPlayed <= mapsPlayed;
+        return stats.overviewStatistics.mapsPlayed <= mapsPlayed;
       }
     }
     case 'Headshots': {
       let headshots = statistic[1];
-      if (statistic[2]> 0) {
-        return player.statistics.headshots >= headshots;
+      if (statistic[2] > 0) {
+        return stats.overviewStatistics.headshots >= headshots;
       } else {
-        return player.statistics.headshots <= headshots;
+        return stats.overviewStatistics.headshots <= headshots;
       }
     }
+    case 'KdRatio': {
+      let kd = statistic[1];
+      if (statistic[2] > 0) {
+        return stats.overviewStatistics.kdRatio >= kd;
+      } else {
+        return stats.overviewStatistics.kdRatio <= kd;
+      }
+    }
+    case 'Aces': {
+      let aces = statistic[1];
+      if (statistic[2] > 0) {
+        return stats.individualStatistics.fiveKillRounds >= aces;
+      } else {
+        return stats.individualStatistics.fiveKillRounds <= aces;
+      }
+    }
+    case 'Multikills': {
+      let mk = statistic[1];
+      if (statistic[2] > 0) {
+        return stats.individualStatistics.roundsWithKills - stats.individualStatistics.oneKillRounds >= mk;
+      } else {
+        return stats.individualStatistics.roundsWithKills - stats.individualStatistics.oneKillRounds <= mk;
+      }
+    }
+    case 'ZeroKillRounds': {
+      let zk = statistic[1];
+      if (statistic[2] > 0) {
+        return stats.individualStatistics.zeroKillRounds >= zk;
+      } else {
+        return stats.individualStatistics.zeroKillRounds <= zk;
+      }
+    }
+    case 'OpeningKills': {
+      let ok = statistic[1];
+      if (statistic[2] > 0) {
+        return stats.individualStatistics.openingKills >= ok;
+      } else {
+        return stats.individualStatistics.openingKills <= ok;
+      }
+    }
+    case 'OpeningKillRatio': {
+      let okr = statistic[1];
+      if (statistic[2] > 0) {
+        return stats.individualStatistics.openingKillRatio >= okr;
+      } else {
+        return stats.individualStatistics.openingKillRatio <= okr;
+      }
+    }
+    case 'RifleKills': {
+      let rk = statistic[1];
+      if (statistic[2] > 0) {
+        return stats.individualStatistics.rifleKills >= rk;
+      } else {
+        return stats.individualStatistics.rifleKills <= rk;
+      }
+    }
+    case 'SniperKills': {
+      let sk = statistic[1];
+      if (statistic[2] > 0) {
+        return stats.individualStatistics.sniperKills >= sk;
+      } else {
+        return stats.individualStatistics.sniperKills <= sk;
+      }
+    }
+    case 'PistolKills': {
+      let pk = statistic[1];
+      if (statistic[2] > 0) {
+        return stats.individualStatistics.pistolKills >= pk;
+      } else {
+        return stats.individualStatistics.pistolKills <= pk;
+      }
+    }
+    case 'GrenadeKills': {
+      let gk = statistic[1];
+      if (statistic[2] > 0) {
+        return stats.individualStatistics.grenadeKills >= gk;
+      } else {
+        return stats.individualStatistics.grenadeKills <= gk;
+      }
+    }*/
     default:
       console.error(`Unknown statistic type: ${type}`);
       return false;
