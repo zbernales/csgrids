@@ -50,8 +50,8 @@ async function checkCondition(statistic, player, stats) {
       const continents = {
         Europe : new Set([
           "France", "Italy", "Germany", "Spain", "Portugal", "United Kingdom",
-          "Ireland", "Belgium", "Netherlands", "Luxembourg", "Switzerland", "Austria",
-          "Poland", "Czech Republic", "Slovakia", "Hungary", "Romania", "Bulgaria",
+          "Ireland", "Belgium", "Netherlands", "Luxembourg", "Switzerland", "Turkey","Austria",
+          "Poland", "Czech Republic", "Slovakia", "Hungary", "Kosovo", "Romania", "Bulgaria",
           "Greece", "Croatia", "Slovenia", "Serbia", "Bosnia and Herzegovina",
           "Montenegro", "North Macedonia", "Albania", "Norway", "Sweden",
           "Finland", "Denmark", "Iceland", "Estonia", "Latvia", "Lithuania",
