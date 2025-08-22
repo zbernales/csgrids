@@ -12,7 +12,7 @@ async function convert(statArray) {
       case 'Team': {
         const team = await HLTV.getTeamByName({ name: stat[1] });
         const teamLogo = team.logo;
-        clientArray[i] = teamLogo;
+        clientArray[i] = ['Team', stat[1], teamLogo];
         break;
       }
       case 'Country':

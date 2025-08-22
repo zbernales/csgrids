@@ -13,7 +13,7 @@ app.use('/api/player', playerRoutes);
 
 
 app.get('/client-array', async (req, res) => {
-  const statArray = grids[0]; 
+  const statArray = grids[1]; 
   const clientArray = await convert(statArray);
   console.log(clientArray);
   res.json(clientArray);

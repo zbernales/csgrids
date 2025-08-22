@@ -3,8 +3,8 @@ const fs = require('fs');
 const grids = JSON.parse(fs.readFileSync("resources/grids.json", "utf8"));
 const handlePlayerPost = (req, res) => {
   const { rowIndex, colIndex, playerName } = req.body;
-  let rows = grids[0].Rows;
-  let cols = grids[0].Cols;
+  let rows = grids[1].Rows;
+  let cols = grids[1].Cols;
   console.log(`Row index: ${rowIndex}, Column index: ${colIndex}, Player selected: ${playerName}`);
   HLTV.getPlayerByName({ name: playerName}).then(async (player) => {
     if (!player || !player.id) {

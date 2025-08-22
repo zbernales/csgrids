@@ -48,7 +48,7 @@ function App() {
           }
         };
         setSelectedPlayers(newSelectedPlayers);
-        if (Object.keys(newSelectedPlayers).length == 9) {
+        if (Object.keys(newSelectedPlayers).length === 9) {
           setAlertVisible(true);
         }
       }).catch(error => {
@@ -94,10 +94,10 @@ function App() {
             />
           )}
           <div />
-            <img src={clientArray[0]} alt="Team Liquid" className="logo"></img>
-            <img src={clientArray[1]} alt="Faze Clan" className="logo"></img>
-            <div className="stat">{clientArray[2]}</div>
-            <img src={clientArray[3]} alt="Luminosity Gaming" className="logo"></img>
+            { clientArray[0]?.[0] === 'Team' ? <img src={clientArray[0]?.[2]} alt={clientArray[0]?.[1]} className="logo"></img> : <div className="stat">{clientArray[0]}</div>}
+            { clientArray[1]?.[0] === 'Team' ? <img src={clientArray[1]?.[2]} alt={clientArray[1]?.[1]} className="logo"></img> : <div className="stat">{clientArray[1]}</div>}
+            { clientArray[2]?.[0] === 'Team' ? <img src={clientArray[2]?.[2]} alt={clientArray[2]?.[1]} className="logo"></img> : <div className="stat">{clientArray[2]}</div>}
+            { clientArray[3]?.[0] === 'Team' ? <img src={clientArray[3]?.[2]} alt={clientArray[3]?.[1]} className="logo"></img> : <div className="stat">{clientArray[3]}</div>}
             <div className="square" onClick={() => handleComponentClick(0, 0)}>
               {selectedPlayers["0-0"] && (
                 <>
@@ -134,7 +134,7 @@ function App() {
                 </>
               )}
             </div>
-            <div className="stat">{clientArray[4]}</div>
+            { clientArray[4]?.[0] === 'Team' ? <img src={clientArray[4]?.[2]} alt={clientArray[4]?.[1]} className="logo"></img> : <div className="stat">{clientArray[4]}</div>}
             <div className="square" onClick={() => handleComponentClick(1, 0)}>
               {selectedPlayers["1-0"] && (
                 <>
@@ -171,7 +171,7 @@ function App() {
                 </>
               )}
             </div>
-            <div className="stat">{clientArray[5]}</div>
+            { clientArray[5]?.[0] === 'Team' ? <img src={clientArray[5]?.[2]} alt={clientArray[5]?.[1]} className="logo"></img> : <div className="stat">{clientArray[5]}</div>}
             <div className="square" onClick={() => handleComponentClick(2, 0)}>
               {selectedPlayers["2-0"] && (
                 <>
