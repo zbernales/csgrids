@@ -1,5 +1,8 @@
 const express = require('express')
 const { HLTV } = require('hltv')
+const fs = require('fs');
+const grids = JSON.parse(fs.readFileSync("resources/grids.json", "utf8"));
+const convert = require('./resources/frontendGridParser');
 const app = express()
 const playerRoutes = require('./routes/playerRoutes')
 const cors = require('cors')
@@ -9,12 +12,12 @@ app.use(express.json())
 app.use('/api/player', playerRoutes);
 
 
-const players = [
-    { id: 7998, name: 's1mple' },
-    { id: 7592, name: 'dev1ce' },
-    { id: 11893, name: 'ZywOo' },
-    // Add more players as needed
-];
+app.get('/client-array', async (req, res) => {
+  const statArray = grids[0]; 
+  const clientArray = await convert(statArray);
+  console.log(clientArray);
+  res.json(clientArray);
+});
 
 app.post('/api/player', (req, res) => {
     const { gridIndex, playerName } = req.body;

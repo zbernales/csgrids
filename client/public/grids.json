@@ -1,0 +1,12 @@
+[
+  {
+    "Date": "8/21/2025",
+    "Rows": [["Team", "luminosity"], ["Major", 1, 1], ["Continent", "Europe"]],
+    "Cols": [["Team", "liquid"], ["Team", "faze"], ["Rating", 1, 1]]
+  },
+  {
+    "Date": "8/22/2025",
+    "Rows": [["Team", "ninjas in pyjamas"], ["Team", "fnatic"], ["Team", "heroic"]],
+    "Cols": [["TeamsPlayedFor", 5, 1], ["Country", "Denmark"], ["Country", "Sweden"]]
+  }
+]

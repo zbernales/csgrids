@@ -8,6 +8,7 @@ import SearchBar from "./components/SearchBar"
 import CustomAlert from "./components/CustomAlert";
 
 function App() {
+  const [clientArray, setClientArray] = useState([]);
   const [selectedPlayers, setSelectedPlayers] = useState({});
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [row, setRow] = useState(null);
@@ -30,6 +31,7 @@ function App() {
   };
 
   const handlePlayerSelect = (selectedPlayer) => {
+    setIsSearchVisible(false);
     if (row !== null && column != null && !Object.values(selectedPlayers).some(player => player?.name === selectedPlayer)) {
       axios.post('http://localhost:3001/api/player', {
         rowIndex: row,
@@ -54,6 +56,12 @@ function App() {
       });
     }
   };
+
+  useEffect(() => {
+  fetch('http://localhost:3001/client-array')
+    .then(res => res.json())
+    .then(data => setClientArray(data));
+  }, []);
 
   // Add event listener for clicks outside
   useEffect(() => {
@@ -86,10 +94,10 @@ function App() {
             />
           )}
           <div />
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTMEq76bpggxzaf1aukuPDGlb7EJv0vi6v0Q&s" alt="Team Liquid" className="logo"></img>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Faze_Clan.svg" alt="Faze Clan" className="logo"></img>
-            <div className="stat">1.0+ HLTV rating</div>
-            <img src="https://upload.wikimedia.org/wikipedia/en/a/ab/Luminosity_Gaming_logo.svg" alt="Luminosity Gaming" className="logo"></img>
+            <img src={clientArray[0]} alt="Team Liquid" className="logo"></img>
+            <img src={clientArray[1]} alt="Faze Clan" className="logo"></img>
+            <div className="stat">{clientArray[2]}</div>
+            <img src={clientArray[3]} alt="Luminosity Gaming" className="logo"></img>
             <div className="square" onClick={() => handleComponentClick(0, 0)}>
               {selectedPlayers["0-0"] && (
                 <>
@@ -126,7 +134,7 @@ function App() {
                 </>
               )}
             </div>
-            <div className="stat">Major Winner</div>
+            <div className="stat">{clientArray[4]}</div>
             <div className="square" onClick={() => handleComponentClick(1, 0)}>
               {selectedPlayers["1-0"] && (
                 <>
@@ -163,7 +171,7 @@ function App() {
                 </>
               )}
             </div>
-            <div className="stat">European</div>
+            <div className="stat">{clientArray[5]}</div>
             <div className="square" onClick={() => handleComponentClick(2, 0)}>
               {selectedPlayers["2-0"] && (
                 <>

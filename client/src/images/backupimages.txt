@@ -1,0 +1,3 @@
+Liquid: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTMEq76bpggxzaf1aukuPDGlb7EJv0vi6v0Q&s"
+FaZe: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Faze_Clan.svg"
+Luminosity: "https://upload.wikimedia.org/wikipedia/en/a/ab/Luminosity_Gaming_logo.svg"

@@ -1,19 +1,22 @@
 const { HLTV } = require('hltv');
+const fs = require('fs');
+const grids = JSON.parse(fs.readFileSync("resources/grids.json", "utf8"));
 const handlePlayerPost = (req, res) => {
   const { rowIndex, colIndex, playerName } = req.body;
-  let rows = [['Team', 'Luminosity'],['Major', 1, 1],['Continent','Europe']];
-  let cols = [['Team', 'Liquid'],['Team', 'FaZe'],['Rating', 1, 1]];
+  let rows = grids[0].Rows;
+  let cols = grids[0].Cols;
   console.log(`Row index: ${rowIndex}, Column index: ${colIndex}, Player selected: ${playerName}`);
   HLTV.getPlayerByName({ name: playerName}).then(async (player) => {
     if (!player || !player.id) {
       throw new Error(`Player not found: ${playerName}`)
     }
+    //const team = await HLTV.getTeamByName({ name: '4411' });
+    //console.log(team);
     /*const stats = await HLTV.getPlayerStats({ id: player.id });
     const condition1 = await checkCondition(rows[rowIndex], player, stats);
     const condition2 = await checkCondition(cols[colIndex], player, stats);*/
     const condition1 = await checkCondition(rows[rowIndex], player);
     const condition2 = await checkCondition(cols[colIndex], player);
-    console.log(player.statistics);
     if (condition1 && condition2) {
       console.log('Valid');
       res.status(200).json({ 
@@ -40,7 +43,7 @@ async function checkCondition(statistic, player, stats) {
   switch (type) {
     case 'Team': {
       let teamName = statistic[1];
-      return player.teams.some((team) => team.name === teamName); 
+      return player.teams.some((team) => team.name.toLowerCase() === teamName); 
     }
     case 'Country': {
       let countryName = statistic[1];
@@ -110,12 +113,23 @@ async function checkCondition(statistic, player, stats) {
     }
     case 'Major': {
       let majors = statistic[1];
+      const otherMajors = new Set(['MLG Columbus 2016','DreamHack Open Cluj-Napoca 2015','ESL One Cologne 2015','ESL One Katowice 2015','DreamHack Winter 2014','ESL One Cologne 2014','EMS One Katowice 2014','Dreamhack Winter 2013']);
       if (statistic[2] > 0) {
-        return player.achievements.filter(item => item.event.name.includes('Major') && item.place === '1st').length >= majors;
+        return player.achievements.filter(item => (item.event.name.includes('Major') || otherMajors.has(item.event.name)) && item.place === '1st').length >= majors;
       } else if (statistic[2] < 0) {
-        return player.achievements.filter(item => item.event.name.includes('Major') && item.place === '1st').length <= majors;
+        return player.achievements.filter(item => (item.event.name.includes('Major') || otherMajors.has(item.event.name)) && item.place === '1st').length < majors;
       } else {
-        return player.achievements.filter(item => item.event.name.includes('Major') && item.place === '1st').length == majors;
+        return player.achievements.filter(item => (item.event.name.includes('Major') || otherMajors.has(item.event.name)) && item.place === '1st').length == majors;
+      }
+    }
+    case 'TeamsPlayedFor': {
+      let teamsPlayedFor = statistic[1];
+      if (statistic[2] > 0) {
+        return player.teams.length >= teamsPlayedFor;
+      } else if (statistc[2] < 0) {
+        return player.teams.length < teamsPlayedFor;
+      } else {
+        return player.teams.length == teamsPlayedFor;
       }
     }
     case 'RatingByEventType': {
