@@ -7,6 +7,7 @@ const app = express()
 const playerRoutes = require('./routes/playerRoutes')
 const cors = require('cors')
 let today = new Date().toISOString().split("T")[0];
+let selectedDate = today;
 
 app.use(cors())
 app.use(express.json())
@@ -14,13 +15,16 @@ app.use('/api/player', playerRoutes);
 
 
 app.get('/client-array', async (req, res) => {
-  const statArray = grids.find(item => item.Date === today); 
-  //const statArray = grids[2];
+  const { date } = req.query; // use the date sent from frontend
+  const statArray = grids.find(item => item.Date === date); 
   const clientArray = await convert(statArray);
-  console.log(today);
   res.json(clientArray);
 });
 
+app.post('/selected-date', async (req, res) => {
+  selectedDate = req.body.date;
+  res.status(200).json({ message: 'Date updated' });
+})
 app.post('/api/player', (req, res) => {
     const { gridIndex, playerName } = req.body;
     console.log(`Receivesfsdfd data: Grid Index: ${gridIndex}, Player Name: ${playerName}`);

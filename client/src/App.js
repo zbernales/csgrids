@@ -3,11 +3,12 @@ import axios from 'axios';
 import {useEffect} from 'react';
 import {useState} from 'react';
 import { useRef } from 'react';
-//import logo from './Counter-Strike_2_29.webp'
-import SearchBar from "./components/SearchBar"
+import SearchBar from "./components/SearchBar";
 import CustomAlert from "./components/CustomAlert";
 
 function App() {
+  let today = new Date().toISOString().split("T")[0];
+  const [date, setDate] = useState(today);
   const [clientArray, setClientArray] = useState([]);
   const [selectedPlayers, setSelectedPlayers] = useState({});
   const [isSearchVisible, setIsSearchVisible] = useState(false);
@@ -21,6 +22,11 @@ function App() {
     setIsSearchVisible(true);
   };
 
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
+    axios.get(`http://localhost:3001/client-array?date=${e.target.value}`)
+      .then(res => setClientArray(res.data));
+  }
   // Hide search bar when clicking outside
   const handleClickOutside = (event) => {
     if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -58,7 +64,7 @@ function App() {
   };
 
   useEffect(() => {
-  fetch('http://localhost:3001/client-array')
+  fetch(`http://localhost:3001/client-array?date=${today}`)
     .then(res => res.json())
     .then(data => setClientArray(data));
   }, []);
@@ -77,22 +83,27 @@ function App() {
         <h1>csgrids.com</h1>
       </header>  
       <div className="content-wrapper">
-      {isSearchVisible && (
-          <div ref={searchRef}>
-            <SearchBar 
-              placeholder="Enter a Player"
-              onPlayerSelect={handlePlayerSelect}
-            />
-          </div>
-        )} 
-        <div className="grid-container">
-          {alertVisible && (
-            <CustomAlert
-              visible={alertVisible}
-              onClose={() => setAlertVisible(false)}
-              message="Grid Completed!"
-            />
-          )}
+        <select value={date} onChange={handleDateChange} class="archive" name="archive" id="archive">
+          <option value={today}>{today}</option>
+          <option value="2025-08-22">2025-08-22</option>
+          <option value="2025-08-21">2025-08-21</option>
+        </select>
+        {isSearchVisible && (
+            <div ref={searchRef}>
+              <SearchBar 
+                placeholder="Enter a Player"
+                onPlayerSelect={handlePlayerSelect}
+              />
+            </div>
+          )} 
+          <div className="grid-container">
+            {alertVisible && (
+              <CustomAlert
+                visible={alertVisible}
+                onClose={() => setAlertVisible(false)}
+                message="Grid Completed!"
+              />
+            )}
           <div />
             { clientArray[0]?.[0] === 'Team' ? <img src={clientArray[0]?.[2]} alt={clientArray[0]?.[1]} className="logo"></img> : <div className="stat">{clientArray[0]}</div>}
             { clientArray[1]?.[0] === 'Team' ? <img src={clientArray[1]?.[2]} alt={clientArray[1]?.[1]} className="logo"></img> : <div className="stat">{clientArray[1]}</div>}
@@ -108,7 +119,7 @@ function App() {
                   />
                   <div className="nametag">{selectedPlayers["0-0"].name}</div>
                 </>
-               )}
+              )}
             </div>
             <div className="square" onClick={() => handleComponentClick(0, 1)}>
               {selectedPlayers["0-1"] && (
@@ -208,7 +219,7 @@ function App() {
                 </>
               )}
             </div>
-        </div>
+          </div>
       </div>
 
       <footer className="footer">

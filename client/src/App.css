@@ -37,6 +37,25 @@ html, body {
   width: 100%;
 }
 
+.archive {
+  position: absolute;
+  left:10px;
+  top:175px;
+  padding: 10px 15px;
+  font-size:16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color:#f9f9f9;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.archive:hover {
+  background-color: #e6f0ff;
+  border-color: #66a3ff;
+}
+
 .grid-container {
   display:grid;
   grid-template-columns:repeat(4,100px);
@@ -74,6 +93,7 @@ html, body {
   padding: 2px 10px;
   border-radius: 8px;
 }
+
 .logo {
   width: 120px;
   height: 120px;
