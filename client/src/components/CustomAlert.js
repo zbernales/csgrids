@@ -1,4 +1,3 @@
-import React from 'react';
 import './CustomAlert.css';
 
 const CustomAlert = ({ visible, onClose, message }) => {

@@ -1,11 +1,13 @@
 const { HLTV } = require('hltv');
+const { getSelectedDate } = require('../states/dateStore');
 const fs = require('fs');
 const grids = JSON.parse(fs.readFileSync("resources/grids.json", "utf8"));
-let today = new Date().toISOString().split("T")[0];
 const handlePlayerPost = (req, res) => {
   const { rowIndex, colIndex, playerName } = req.body;
-  let rows = grids.find(item => item.Date === today).Rows;
-  let cols = grids.find(item => item.Date === today).Cols;
+  const selectedDate = getSelectedDate();
+  let grid = grids.find(item => item.Date === selectedDate) || grids[0];
+  let rows = grid.Rows;
+  let cols = grid.Cols;
   console.log(`Row index: ${rowIndex}, Column index: ${colIndex}, Player selected: ${playerName}`);
   HLTV.getPlayerByName({ name: playerName}).then(async (player) => {
     if (!player || !player.id) {
@@ -37,7 +39,7 @@ const handlePlayerPost = (req, res) => {
   })
 };
 
-async function checkCondition(statistic, player, stats) {
+async function checkCondition(statistic, player) {
   let type = statistic[0];
   switch (type) {
     case 'Team': {

@@ -1,8 +1,18 @@
 [
   {
-    "Date": "2025-08-23",
+    "Date": "2025-08-16",
     "Rows": [["Team", "luminosity"], ["Major", 1, 1], ["Continent", "Europe"]],
     "Cols": [["Team", "liquid"], ["Team", "faze"], ["Rating", 1.0, 1]]
+  },
+  {
+    "Date": "2025-08-17",
+    "Rows": [["Team", "vitality"], ["Team", "faze"], ["Country", "France"]],
+    "Cols": [["Team", "g2"], ["Team", "mouz"], ["Rating", 1.14, 1]]
+  },
+  {
+    "Date": "2025-08-21",
+    "Rows": [["Continent", "North America"], ["Continent", "South America"], ["Continent", "Asia"]],
+    "Cols": [["Rating", 1.1, 1], ["Rating", 0.95, -1], ["Major", 0, 0]]
   },
   {
     "Date": "2025-08-22",
@@ -10,7 +20,37 @@
     "Cols": [["TeamsPlayedFor", 5, 1], ["Country", "Denmark"], ["Country", "Sweden"]]
   },
   {
-    "Date": "2025-08-21",
+    "Date": "2025-08-23",
+    "Rows": [["Team", "luminosity"], ["Major", 1, 1], ["Continent", "Europe"]],
+    "Cols": [["Team", "liquid"], ["Team", "faze"], ["Rating", 1.0, 1]]
+  },
+  {
+    "Date": "2025-08-24",
+    "Rows": [["Team", "vitality"], ["Team", "faze"], ["Country", "France"]],
+    "Cols": [["Team", "g2"], ["Team", "mouz"], ["Rating", 1.15, 1]]
+  },
+  {
+    "Date": "2025-08-25",
+    "Rows": [["Team", "ninjas in pyjamas"], ["Team", "fnatic"], ["Team", "heroic"]],
+    "Cols": [["TeamsPlayedFor", 5, 1], ["Country", "Denmark"], ["Country", "Sweden"]]
+  },
+  {
+    "Date": "2025-08-26",
+    "Rows": [["Continent", "North America"], ["Continent", "South America"], ["Continent", "Asia"]],
+    "Cols": [["Rating", 1.1, 1], ["Rating", 0.95, -1], ["Major", 0, 0]]
+  },
+  {
+    "Date": "2025-08-27",
+    "Rows": [["Team", "luminosity"], ["Major", 1, 1], ["Continent", "Europe"]],
+    "Cols": [["Team", "liquid"], ["Team", "faze"], ["Rating", 1.0, 1]]
+  },
+  {
+    "Date": "2025-08-28",
+    "Rows": [["Team", "ninjas in pyjamas"], ["Team", "fnatic"], ["Team", "heroic"]],
+    "Cols": [["TeamsPlayedFor", 5, 1], ["Country", "Denmark"], ["Country", "Sweden"]]
+  },
+  {
+    "Date": "2025-08-29",
     "Rows": [["Continent", "North America"], ["Continent", "South America"], ["Continent", "Asia"]],
     "Cols": [["Rating", 1.1, 1], ["Rating", 0.95, -1], ["Major", 0, 0]]
   }

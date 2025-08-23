@@ -3,12 +3,12 @@ import axios from 'axios';
 import {useEffect} from 'react';
 import {useState} from 'react';
 import { useRef } from 'react';
+import Archive from "./components/Archive"
 import SearchBar from "./components/SearchBar";
 import CustomAlert from "./components/CustomAlert";
 
 function App() {
   let today = new Date().toISOString().split("T")[0];
-  const [date, setDate] = useState(today);
   const [clientArray, setClientArray] = useState([]);
   const [selectedPlayers, setSelectedPlayers] = useState({});
   const [isSearchVisible, setIsSearchVisible] = useState(false);
@@ -22,10 +22,10 @@ function App() {
     setIsSearchVisible(true);
   };
 
-  const handleDateChange = (e) => {
-    setDate(e.target.value);
-    axios.get(`http://localhost:3001/client-array?date=${e.target.value}`)
-      .then(res => setClientArray(res.data));
+  const handleDateChange = (selectedDate) => {
+    setSelectedPlayers({});
+    axios.get(`http://localhost:3001/client-array?date=${selectedDate}`)
+      .then(response => setClientArray(response.data));
   }
   // Hide search bar when clicking outside
   const handleClickOutside = (event) => {
@@ -64,9 +64,10 @@ function App() {
   };
 
   useEffect(() => {
-  fetch(`http://localhost:3001/client-array?date=${today}`)
-    .then(res => res.json())
-    .then(data => setClientArray(data));
+    fetch(`http://localhost:3001/client-array?date=${today}`)
+      .then(res => res.json())
+      .then(data => setClientArray(data));
+    setSelectedPlayers({});
   }, []);
 
   // Add event listener for clicks outside
@@ -83,11 +84,7 @@ function App() {
         <h1>csgrids.com</h1>
       </header>  
       <div className="content-wrapper">
-        <select value={date} onChange={handleDateChange} class="archive" name="archive" id="archive">
-          <option value={today}>{today}</option>
-          <option value="2025-08-22">2025-08-22</option>
-          <option value="2025-08-21">2025-08-21</option>
-        </select>
+        <Archive onDateSelect={handleDateChange}></Archive>
         {isSearchVisible && (
             <div ref={searchRef}>
               <SearchBar 
