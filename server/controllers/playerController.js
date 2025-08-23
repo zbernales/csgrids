@@ -1,17 +1,16 @@
 const { HLTV } = require('hltv');
 const fs = require('fs');
 const grids = JSON.parse(fs.readFileSync("resources/grids.json", "utf8"));
+let today = new Date().toISOString().split("T")[0];
 const handlePlayerPost = (req, res) => {
   const { rowIndex, colIndex, playerName } = req.body;
-  let rows = grids[1].Rows;
-  let cols = grids[1].Cols;
+  let rows = grids.find(item => item.Date === today).Rows;
+  let cols = grids.find(item => item.Date === today).Cols;
   console.log(`Row index: ${rowIndex}, Column index: ${colIndex}, Player selected: ${playerName}`);
   HLTV.getPlayerByName({ name: playerName}).then(async (player) => {
     if (!player || !player.id) {
       throw new Error(`Player not found: ${playerName}`)
     }
-    //const team = await HLTV.getTeamByName({ name: '4411' });
-    //console.log(team);
     /*const stats = await HLTV.getPlayerStats({ id: player.id });
     const condition1 = await checkCondition(rows[rowIndex], player, stats);
     const condition2 = await checkCondition(cols[colIndex], player, stats);*/
@@ -100,7 +99,7 @@ async function checkCondition(statistic, player, stats) {
           "Micronesia", "Palau", "Nauru", "Tuvalu"
         ])
       };
-      let continent = statistic[1];
+      let continent = statistic[1].replaceAll(" ", "");
       return continents[continent].has(player.country.name);
     }
     case 'Rating': {
@@ -124,12 +123,14 @@ async function checkCondition(statistic, player, stats) {
     }
     case 'TeamsPlayedFor': {
       let teamsPlayedFor = statistic[1];
+      const uniqueTeams = new Set(player.teams.map(team => team.id)); 
+      const teamCount = uniqueTeams.size;
       if (statistic[2] > 0) {
-        return player.teams.length >= teamsPlayedFor;
+        return teamCount >= teamsPlayedFor;
       } else if (statistc[2] < 0) {
-        return player.teams.length < teamsPlayedFor;
+        return teamCount < teamsPlayedFor;
       } else {
-        return player.teams.length == teamsPlayedFor;
+        return teamCount == teamsPlayedFor;
       }
     }
     case 'RatingByEventType': {

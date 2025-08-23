@@ -6,6 +6,7 @@ const convert = require('./resources/frontendGridParser');
 const app = express()
 const playerRoutes = require('./routes/playerRoutes')
 const cors = require('cors')
+let today = new Date().toISOString().split("T")[0];
 
 app.use(cors())
 app.use(express.json())
@@ -13,9 +14,10 @@ app.use('/api/player', playerRoutes);
 
 
 app.get('/client-array', async (req, res) => {
-  const statArray = grids[1]; 
+  const statArray = grids.find(item => item.Date === today); 
+  //const statArray = grids[2];
   const clientArray = await convert(statArray);
-  console.log(clientArray);
+  console.log(today);
   res.json(clientArray);
 });
 
