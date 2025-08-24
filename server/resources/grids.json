@@ -1,5 +1,110 @@
 [
   {
+    "Date": "2025-07-26",
+    "Rows": [["Team", "luminosity"], ["Major", 1, 1], ["Continent", "Europe"]],
+    "Cols": [["Team", "liquid"], ["Team", "faze"], ["Rating", 1.0, 1]]
+  },
+  {
+    "Date": "2025-07-27",
+    "Rows": [["Team", "vitality"], ["Team", "faze"], ["Country", "France"]],
+    "Cols": [["Team", "g2"], ["Team", "mouz"], ["Rating", 1.15, 1]]
+  },
+  {
+    "Date": "2025-07-28",
+    "Rows": [["Team", "ninjas in pyjamas"], ["Team", "fnatic"], ["Team", "heroic"]],
+    "Cols": [["TeamsPlayedFor", 5, 1], ["Country", "Denmark"], ["Country", "Sweden"]]
+  },
+  {
+    "Date": "2025-07-29",
+    "Rows": [["Continent", "North America"], ["Continent", "South America"], ["Continent", "Asia"]],
+    "Cols": [["Rating", 1.1, 1], ["Rating", 0.95, -1], ["Major", 0, 0]]
+  },
+  {
+    "Date": "2025-07-30",
+    "Rows": [["Age", 20, -1], ["Age", 27, 1], ["TeamsPlayedFor", 7, 1]],
+    "Cols": [["Continent", "North America"], ["Continent", "Asia"], ["Country", "Australia"]]
+  },
+  {
+    "Date": "2025-07-31",
+    "Rows": [["Team", "copenhagen flames"], ["Team", "heroic"], ["Major", 2, 1]],
+    "Cols": [["Team", "astralis"], ["Country", "Denmark"], ["Rating", 1.1, 1]]
+  },
+  {
+    "Date": "2025-08-01",
+    "Rows": [["Team", "cloud9"], ["Team", "virtus.pro"], ["Team", "falcons"]],
+    "Cols": [["Country", "Russia"], ["Continent", "Europe"], ["Rating", 1.05, -1]]
+  },
+  {
+    "Date": "2025-08-02",
+    "Rows": [["Team", "luminosity"], ["Major", 1, 1], ["Continent", "Europe"]],
+    "Cols": [["Team", "liquid"], ["Team", "faze"], ["Rating", 1.0, 1]]
+  },
+  {
+    "Date": "2025-08-03",
+    "Rows": [["Team", "vitality"], ["Team", "faze"], ["Country", "France"]],
+    "Cols": [["Team", "g2"], ["Team", "mouz"], ["Rating", 1.15, 1]]
+  },
+  {
+    "Date": "2025-08-04",
+    "Rows": [["Team", "ninjas in pyjamas"], ["Team", "fnatic"], ["Team", "heroic"]],
+    "Cols": [["TeamsPlayedFor", 5, 1], ["Country", "Denmark"], ["Country", "Sweden"]]
+  },
+  {
+    "Date": "2025-08-05",
+    "Rows": [["Continent", "North America"], ["Continent", "South America"], ["Continent", "Asia"]],
+    "Cols": [["Rating", 1.1, 1], ["Rating", 0.95, -1], ["Major", 0, 0]]
+  },
+  {
+    "Date": "2025-08-06",
+    "Rows": [["Age", 20, -1], ["Age", 27, 1], ["TeamsPlayedFor", 7, 1]],
+    "Cols": [["Continent", "North America"], ["Continent", "Asia"], ["Country", "Australia"]]
+  },
+  {
+    "Date": "2025-08-07",
+    "Rows": [["Team", "copenhagen flames"], ["Team", "heroic"], ["Major", 2, 1]],
+    "Cols": [["Team", "astralis"], ["Country", "Denmark"], ["Rating", 1.1, 1]]
+  },
+  {
+    "Date": "2025-08-08",
+    "Rows": [["Team", "cloud9"], ["Team", "virtus.pro"], ["Team", "falcons"]],
+    "Cols": [["Country", "Russia"], ["Continent", "Europe"], ["Rating", 1.05, -1]]
+  },
+  {
+    "Date": "2025-08-09",
+    "Rows": [["Team", "luminosity"], ["Major", 1, 1], ["Continent", "Europe"]],
+    "Cols": [["Team", "liquid"], ["Team", "faze"], ["Rating", 1.0, 1]]
+  },
+  {
+    "Date": "2025-08-10",
+    "Rows": [["Team", "vitality"], ["Team", "faze"], ["Country", "France"]],
+    "Cols": [["Team", "g2"], ["Team", "mouz"], ["Rating", 1.15, 1]]
+  },
+  {
+    "Date": "2025-08-11",
+    "Rows": [["Team", "ninjas in pyjamas"], ["Team", "fnatic"], ["Team", "heroic"]],
+    "Cols": [["TeamsPlayedFor", 5, 1], ["Country", "Denmark"], ["Country", "Sweden"]]
+  },
+  {
+    "Date": "2025-08-12",
+    "Rows": [["Continent", "North America"], ["Continent", "South America"], ["Continent", "Asia"]],
+    "Cols": [["Rating", 1.1, 1], ["Rating", 0.95, -1], ["Major", 0, 0]]
+  },
+  {
+    "Date": "2025-08-13",
+    "Rows": [["Age", 20, -1], ["Age", 27, 1], ["TeamsPlayedFor", 7, 1]],
+    "Cols": [["Continent", "North America"], ["Continent", "Asia"], ["Country", "Australia"]]
+  },
+  {
+    "Date": "2025-08-14",
+    "Rows": [["Team", "copenhagen flames"], ["Team", "heroic"], ["Major", 2, 1]],
+    "Cols": [["Team", "astralis"], ["Country", "Denmark"], ["Rating", 1.1, 1]]
+  },
+  {
+    "Date": "2025-08-15",
+    "Rows": [["Team", "cloud9"], ["Team", "virtus.pro"], ["Team", "falcons"]],
+    "Cols": [["Country", "Russia"], ["Continent", "Europe"], ["Rating", 1.05, -1]]
+  },
+  {
     "Date": "2025-08-16",
     "Rows": [["Team", "luminosity"], ["Major", 1, 1], ["Continent", "Europe"]],
     "Cols": [["Team", "liquid"], ["Team", "faze"], ["Rating", 1.0, 1]]
@@ -8,6 +113,21 @@
     "Date": "2025-08-17",
     "Rows": [["Team", "vitality"], ["Team", "faze"], ["Country", "France"]],
     "Cols": [["Team", "g2"], ["Team", "mouz"], ["Rating", 1.14, 1]]
+  },
+  {
+    "Date": "2025-08-18",
+    "Rows": [["Age", 20, -1], ["Age", 27, 1], ["TeamsPlayedFor", 7, 1]],
+    "Cols": [["Continent", "North America"], ["Continent", "Asia"], ["Country", "Australia"]]
+  },
+  {
+    "Date": "2025-08-19",
+    "Rows": [["Team", "copenhagen flames"], ["Team", "heroic"], ["Major", 2, 1]],
+    "Cols": [["Team", "astralis"], ["Country", "Denmark"], ["Rating", 1.1, 1]]
+  },
+  {
+    "Date": "2025-08-20",
+    "Rows": [["Team", "cloud9"], ["Team", "virtus.pro"], ["Team", "falcons"]],
+    "Cols": [["Country", "Russia"], ["Continent", "Europe"], ["Rating", 1.05, -1]]
   },
   {
     "Date": "2025-08-21",
@@ -41,17 +161,157 @@
   },
   {
     "Date": "2025-08-27",
+    "Rows": [["Age", 20, -1], ["Age", 27, 1], ["TeamsPlayedFor", 7, 1]],
+    "Cols": [["Continent", "North America"], ["Continent", "Asia"], ["Country", "Australia"]]
+  },
+  {
+    "Date": "2025-08-28",
+    "Rows": [["Team", "copenhagen flames"], ["Team", "heroic"], ["Major", 2, 1]],
+    "Cols": [["Team", "astralis"], ["Country", "Denmark"], ["Rating", 1.1, 1]]
+  },
+  {
+    "Date": "2025-08-29",
+    "Rows": [["Team", "cloud9"], ["Team", "virtus.pro"], ["Team", "falcons"]],
+    "Cols": [["Country", "Russia"], ["Continent", "Europe"], ["Rating", 1.05, -1]]
+  },
+  {
+    "Date": "2025-08-30",
     "Rows": [["Team", "luminosity"], ["Major", 1, 1], ["Continent", "Europe"]],
     "Cols": [["Team", "liquid"], ["Team", "faze"], ["Rating", 1.0, 1]]
   },
   {
-    "Date": "2025-08-28",
+    "Date": "2025-08-31",
+    "Rows": [["Team", "vitality"], ["Team", "faze"], ["Country", "France"]],
+    "Cols": [["Team", "g2"], ["Team", "mouz"], ["Rating", 1.15, 1]]
+  },
+  {
+    "Date": "2025-09-01",
     "Rows": [["Team", "ninjas in pyjamas"], ["Team", "fnatic"], ["Team", "heroic"]],
     "Cols": [["TeamsPlayedFor", 5, 1], ["Country", "Denmark"], ["Country", "Sweden"]]
   },
   {
-    "Date": "2025-08-29",
+    "Date": "2025-09-02",
     "Rows": [["Continent", "North America"], ["Continent", "South America"], ["Continent", "Asia"]],
     "Cols": [["Rating", 1.1, 1], ["Rating", 0.95, -1], ["Major", 0, 0]]
+  },
+  {
+    "Date": "2025-09-03",
+    "Rows": [["Age", 20, -1], ["Age", 27, 1], ["TeamsPlayedFor", 7, 1]],
+    "Cols": [["Continent", "North America"], ["Continent", "Asia"], ["Country", "Australia"]]
+  },
+  {
+    "Date": "2025-09-04",
+    "Rows": [["Team", "copenhagen flames"], ["Team", "heroic"], ["Major", 2, 1]],
+    "Cols": [["Team", "astralis"], ["Country", "Denmark"], ["Rating", 1.1, 1]]
+  },
+  {
+    "Date": "2025-09-05",
+    "Rows": [["Team", "cloud9"], ["Team", "virtus.pro"], ["Team", "falcons"]],
+    "Cols": [["Country", "Russia"], ["Continent", "Europe"], ["Rating", 1.05, -1]]
+  },
+  {
+    "Date": "2025-09-06",
+    "Rows": [["Team", "luminosity"], ["Major", 1, 1], ["Continent", "Europe"]],
+    "Cols": [["Team", "liquid"], ["Team", "faze"], ["Rating", 1.0, 1]]
+  },
+  {
+    "Date": "2025-09-07",
+    "Rows": [["Team", "vitality"], ["Team", "faze"], ["Country", "France"]],
+    "Cols": [["Team", "g2"], ["Team", "mouz"], ["Rating", 1.15, 1]]
+  },
+  {
+    "Date": "2025-09-07",
+    "Rows": [["Team", "ninjas in pyjamas"], ["Team", "fnatic"], ["Team", "heroic"]],
+    "Cols": [["TeamsPlayedFor", 5, 1], ["Country", "Denmark"], ["Country", "Sweden"]]
+  },
+  {
+    "Date": "2025-09-08",
+    "Rows": [["Continent", "North America"], ["Continent", "South America"], ["Continent", "Asia"]],
+    "Cols": [["Rating", 1.1, 1], ["Rating", 0.95, -1], ["Major", 0, 0]]
+  },
+  {
+    "Date": "2025-09-09",
+    "Rows": [["Age", 20, -1], ["Age", 27, 1], ["TeamsPlayedFor", 7, 1]],
+    "Cols": [["Continent", "North America"], ["Continent", "Asia"], ["Country", "Australia"]]
+  },
+  {
+    "Date": "2025-09-10",
+    "Rows": [["Team", "copenhagen flames"], ["Team", "heroic"], ["Major", 2, 1]],
+    "Cols": [["Team", "astralis"], ["Country", "Denmark"], ["Rating", 1.1, 1]]
+  },
+  {
+    "Date": "2025-09-11",
+    "Rows": [["Team", "cloud9"], ["Team", "virtus.pro"], ["Team", "falcons"]],
+    "Cols": [["Country", "Russia"], ["Continent", "Europe"], ["Rating", 1.05, -1]]
+  },
+  {
+    "Date": "2025-09-12",
+    "Rows": [["Team", "luminosity"], ["Major", 1, 1], ["Continent", "Europe"]],
+    "Cols": [["Team", "liquid"], ["Team", "faze"], ["Rating", 1.0, 1]]
+  },
+  {
+    "Date": "2025-09-13",
+    "Rows": [["Team", "vitality"], ["Team", "faze"], ["Country", "France"]],
+    "Cols": [["Team", "g2"], ["Team", "mouz"], ["Rating", 1.15, 1]]
+  },
+  {
+    "Date": "2025-09-14",
+    "Rows": [["Team", "ninjas in pyjamas"], ["Team", "fnatic"], ["Team", "heroic"]],
+    "Cols": [["TeamsPlayedFor", 5, 1], ["Country", "Denmark"], ["Country", "Sweden"]]
+  },
+  {
+    "Date": "2025-09-15",
+    "Rows": [["Continent", "North America"], ["Continent", "South America"], ["Continent", "Asia"]],
+    "Cols": [["Rating", 1.1, 1], ["Rating", 0.95, -1], ["Major", 0, 0]]
+  },
+  {
+    "Date": "2025-09-16",
+    "Rows": [["Age", 20, -1], ["Age", 27, 1], ["TeamsPlayedFor", 7, 1]],
+    "Cols": [["Continent", "North America"], ["Continent", "Asia"], ["Country", "Australia"]]
+  },
+  {
+    "Date": "2025-09-17",
+    "Rows": [["Team", "copenhagen flames"], ["Team", "heroic"], ["Major", 2, 1]],
+    "Cols": [["Team", "astralis"], ["Country", "Denmark"], ["Rating", 1.1, 1]]
+  },
+  {
+    "Date": "2025-09-18",
+    "Rows": [["Team", "cloud9"], ["Team", "virtus.pro"], ["Team", "falcons"]],
+    "Cols": [["Country", "Russia"], ["Continent", "Europe"], ["Rating", 1.05, -1]]
+  },
+  {
+    "Date": "2025-09-19",
+    "Rows": [["Team", "luminosity"], ["Major", 1, 1], ["Continent", "Europe"]],
+    "Cols": [["Team", "liquid"], ["Team", "faze"], ["Rating", 1.0, 1]]
+  },
+  {
+    "Date": "2025-09-20",
+    "Rows": [["Team", "vitality"], ["Team", "faze"], ["Country", "France"]],
+    "Cols": [["Team", "g2"], ["Team", "mouz"], ["Rating", 1.15, 1]]
+  },
+  {
+    "Date": "2025-09-21",
+    "Rows": [["Team", "ninjas in pyjamas"], ["Team", "fnatic"], ["Team", "heroic"]],
+    "Cols": [["TeamsPlayedFor", 5, 1], ["Country", "Denmark"], ["Country", "Sweden"]]
+  },
+  {
+    "Date": "2025-09-22",
+    "Rows": [["Continent", "North America"], ["Continent", "South America"], ["Continent", "Asia"]],
+    "Cols": [["Rating", 1.1, 1], ["Rating", 0.95, -1], ["Major", 0, 0]]
+  },
+  {
+    "Date": "2025-09-23",
+    "Rows": [["Age", 20, -1], ["Age", 27, 1], ["TeamsPlayedFor", 7, 1]],
+    "Cols": [["Continent", "North America"], ["Continent", "Asia"], ["Country", "Australia"]]
+  },
+  {
+    "Date": "2025-09-24",
+    "Rows": [["Team", "copenhagen flames"], ["Team", "heroic"], ["Major", 2, 1]],
+    "Cols": [["Team", "astralis"], ["Country", "Denmark"], ["Rating", 1.1, 1]]
+  },
+  {
+    "Date": "2025-09-25",
+    "Rows": [["Team", "cloud9"], ["Team", "virtus.pro"], ["Team", "falcons"]],
+    "Cols": [["Country", "Russia"], ["Continent", "Europe"], ["Rating", 1.05, -1]]
   }
 ]

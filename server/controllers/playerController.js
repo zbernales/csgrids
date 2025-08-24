@@ -13,6 +13,7 @@ const handlePlayerPost = (req, res) => {
     if (!player || !player.id) {
       throw new Error(`Player not found: ${playerName}`)
     }
+    console.log(player.statistics.rating);
     /*const stats = await HLTV.getPlayerStats({ id: player.id });
     const condition1 = await checkCondition(rows[rowIndex], player, stats);
     const condition2 = await checkCondition(cols[colIndex], player, stats);*/
@@ -133,6 +134,14 @@ async function checkCondition(statistic, player) {
         return teamCount < teamsPlayedFor;
       } else {
         return teamCount == teamsPlayedFor;
+      }
+    }
+    case 'Age': {
+      let age = statistic[1];
+      if (statistic[2] > 0) {
+        return player.age >= age;
+      } else {
+        return player.age <= age;
       }
     }
     case 'RatingByEventType': {

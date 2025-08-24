@@ -48,8 +48,15 @@ async function convert(statArray) {
         }
         break;
       }
+      case 'Age': {
+        if (stat[2] > 0) {
+          clientArray[i] = stat[1] + ' Years Old or Older';
+        } else {
+          clientArray[i] = stat[1] + ' Years Old or Younger';
+        }
+      }
       default: {
-        console.error('Unknown statistic type');
+        console.error('Unknown statistic type: ' + type);
       }
     }
   }
