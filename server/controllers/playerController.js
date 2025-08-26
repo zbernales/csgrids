@@ -13,10 +13,9 @@ const handlePlayerPost = (req, res) => {
     if (!player || !player.id) {
       throw new Error(`Player not found: ${playerName}`)
     }
-    console.log(player.statistics.rating);
-    /*const stats = await HLTV.getPlayerStats({ id: player.id });
-    const condition1 = await checkCondition(rows[rowIndex], player, stats);
-    const condition2 = await checkCondition(cols[colIndex], player, stats);*/
+    //const stats = await HLTV.getPlayerStats({ id: player.id });
+    //const condition1 = await checkCondition(rows[rowIndex], player, stats);
+    //const condition2 = await checkCondition(cols[colIndex], player, stats);*/
     const condition1 = await checkCondition(rows[rowIndex], player);
     const condition2 = await checkCondition(cols[colIndex], player);
     if (condition1 && condition2) {
